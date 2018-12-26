@@ -1,26 +1,24 @@
-"""
-9. Среди натуральных чисел, которые были введены, найти наибольшее по сумме цифр.
-Вывести на экран это число и сумму его цифр, если пользователь вводит 0, программа завершается.
-"""
+import random
 
-user_number = None
-number = None
-summ_number = 0
-max_summ = None
-max_summ_number = None
+size = 4
+matr = [[0] * size for i in range(size)]
 
-while True:
-    user_number = int(input("Введите число: "))
-    if user_number == 0:
-        break
-    else:
-        number = user_number
-        while user_number >= 1:
-            summ_number += user_number % 10
-            user_number //= 10
-        if max_summ == None or summ_number > max_summ:
-            max_summ = summ_number
-            max_summ_number = number
-        summ_number = 0
+max_min_elem_col = None
+min_elem_col = None
+min_el = None
 
-print(f"Максимальная сумма цифр у числа {max_summ_number}: {max_summ}")
+for i in range(size):
+    for j in range(size):
+        matr[i][j] = random.randint(0, 10)
+    print(matr[i])
+
+for i in range(size):
+    for j in range(size):
+        if min_el is None or matr[j][i] < min_el:
+            min_el = matr[j][i]
+    min_elem_col = min_el
+    min_el = None
+    if max_min_elem_col is None or min_elem_col > max_min_elem_col:
+        max_min_elem_col = min_elem_col
+
+print(max_min_elem_col)

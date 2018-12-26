@@ -1,21 +1,20 @@
-"""
-6. В программе генерируется случайное целое число от 0 до 100.
-Пользователь должен его отгадать не более чем за 10 попыток.
-После каждой неудачной попытки должно сообщаться больше или меньше введенное
-пользователем число, чем то, что загадано. Если за 10 попыток число не отгадано,
-то вывести загаданное число.
-"""
-import random
+arr = [9, 4, 1, 8, 2, 14, 25, 25, 1]
+print(arr)
+min_el_index = None
+max_el_index = None
+summ = 0
 
-number = random.randrange(0, 100)
-for i in range(9, -1, -1):
-    user_number = int(input("Введите число: "))
-    if user_number == number:
-        print("Поздравляю! Вы угадали!")
-        quit()
-    elif user_number < number:
-        print(f"Число {user_number} меньше загаданного\nОсталось {i} попыток")
-    else:
-        print(f"Число {user_number} больше загаданного\nОсталось {i} попыток")
+for i in range(len(arr)):
+    if min_el_index is None or arr[i] < arr[min_el_index]:
+        min_el_index = i
+    if max_el_index is None or arr[i] > arr[max_el_index]:
+        max_el_index = i
 
-print(f"Вы прогирали. Загаданное число: {number}")
+if max_el_index < min_el_index:
+    min_el_index, max_el_index = max_el_index, min_el_index
+
+for i in range(min_el_index + 1, max_el_index):
+    summ += arr[i]
+
+print(summ)
+

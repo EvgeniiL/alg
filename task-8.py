@@ -1,16 +1,15 @@
-"""
-8. Посчитать, сколько раз встречается определенная цифра в введенной последовательности чисел.
-Количество вводимых чисел и цифра, которую необходимо посчитать, задаются вводом с клавиатуры.
-"""
-this_number = None
-count = 0
-numbers = int(input("Введите вашу последовательность: "))
-number = int(input("Введите цифру: "))
+rows = 4
+cols = 5
+matr = [[0] * cols for i in range(rows)]
+rows_summ = 0
 
-while numbers >= 1:
-    this_number = numbers % 10
-    if this_number == number:
-        count += 1
-    numbers //= 10
+for i in range(len(matr)):
+    for j in range(len(matr[i]) - 1):
+        matr[i][j] = int(input("Введите число: "))
+        rows_summ += matr[i][j]
+    matr[i][len(matr[i]) - 1] = rows_summ
+    rows_summ = 0
+    print("-------------")
 
-print(f"цифра {number} встречается в последовательности {count} раз")
+for i in matr:
+    print(i)
